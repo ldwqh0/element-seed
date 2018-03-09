@@ -6,12 +6,18 @@
 </template>
 
 <script>
-  export default {
-    name: 'App'
+  import Vue from 'vue'
+  import { Component } from 'vue-property-decorator'
+
+  @Component()
+  export default class app extends Vue {
+    name = 'App'
   }
 </script>
 
 <style lang="less">
+  @import "./style/themes/default.less";
+
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -19,10 +25,5 @@
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
-  }
-
-  body {
-    /*background: black;*/
-    background: url("./assets/girl.jpg");
   }
 </style>

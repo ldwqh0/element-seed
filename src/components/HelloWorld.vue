@@ -84,15 +84,12 @@
 </template>
 
 <script>
-  export default {
-    name: 'HelloWorld',
-    data () {
-      // debugger
-      console.log('dddd')
-      return {
-        msg: 'Welcome to Your Vue.js App'
-      }
-    }
+  import { Component } from 'vue-property-decorator'
+  import Vue from 'vue'
+
+  @Component()
+  export default class HelloWorld extends Vue {
+    msg = 'Welcome to Your Vue.js App'
   }
 </script>
 
