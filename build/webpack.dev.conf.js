@@ -1,7 +1,6 @@
 process.env.NODE_ENV = 'development' //定义为开发环境
 const merge = require('webpack-merge')
 
-const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const baseWebpackConfig = require('./webpack.base.conf')
 const utils = require('./utils')

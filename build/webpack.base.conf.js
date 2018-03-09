@@ -1,7 +1,4 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const utils = require('./utils')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const vueLoaderConfig = require('./vue-loader.conf')
 const config = require('../config')
 
