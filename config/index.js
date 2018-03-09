@@ -6,27 +6,24 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
     // Paths
-    assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
-    proxyTable: {},
+    assetsSubDirectory: 'static', // 静态资源的路径
+    assetsPublicPath: '/',// 项目发布路径
+    proxyTable: {},// devServer反向代理列表
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-    autoOpenBrowser: false,
-    errorOverlay: true,
-    notifyOnErrors: true,
+    port: 8080, // 服务端口
+    autoOpenBrowser: false, //编译完成后是否自动打开浏览器
+    errorOverlay: true, //在devServer中，是否启用错误输出层
+    notifyOnErrors: false, //是否在系统通知区域提示错误
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    // Use Eslint Loader?
-    // If true, your code will be linted during bundling and
-    // linting errors and warnings will be shown in the console.
-    useEslint: true,
-    // If true, eslint errors and warnings will also be shown in the error overlay
-    // in the browser.
-    showEslintErrorsInOverlay: false,
+    // 是否使用 Eslint Loader 在编译过程中检查书写错误?
+    // 格式错误会在控制台显示出来
+    useEslint: true, //
+    // 是否在devServer中用一个单独的层显示格式错误
+    showEslintErrorsInOverlay: true,
 
     /**
      * Source Maps
@@ -49,8 +46,8 @@ module.exports = {
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsSubDirectory: 'static', // 静态资源的路径
+    assetsPublicPath: '/', // 项目的的发布路径，必须以'/'结尾
 
     /**
      * Source Maps
@@ -64,7 +61,7 @@ module.exports = {
     // Surge or Netlify already gzip all static assets for you.
     // Before setting to `true`, make sure to:
     // npm install --save-dev compression-webpack-plugin
-    productionGzip: false,
+    productionGzip: false, //是否启用Gzip压缩，如果使用nginx发布，必须选择false
     productionGzipExtensions: ['js', 'css'],
 
     // Run the build command with an extra argument to

@@ -1,14 +1,25 @@
-'use strict'
 const path = require('path')
 const config = require('../config')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const packageConfig = require('../package.json')
+/**
+ * 解析路径
+ * @param path
+ * 路径名称，从项目的根开始
+ * @returns {*|string}
+ */
+exports.resolve = (path__) => {
+  return path.resolve(__dirname, '..', path__)
+}
 
-exports.assetsPath = function (_path) {
+/**
+ * 解析静态文件路径
+ * @param _path
+ */
+exports.assetsPath = (_path) => {
   const assetsSubDirectory = process.env.NODE_ENV === 'production'
     ? config.build.assetsSubDirectory
     : config.dev.assetsSubDirectory
-
   return path.posix.join(assetsSubDirectory, _path)
 }
 
@@ -45,10 +56,7 @@ exports.cssLoaders = function (options) {
     // Extract CSS when that option is specified
     // (which is the case during production build)
     if (options.extract) {
-      return ExtractTextPlugin.extract({
-        use: loaders,
-        fallback: 'vue-style-loader'
-      })
+      return [MiniCssExtractPlugin.loader].concat(loaders)
     } else {
       return ['vue-style-loader'].concat(loaders)
     }
@@ -59,7 +67,7 @@ exports.cssLoaders = function (options) {
     css: generateLoaders(),
     postcss: generateLoaders(),
     less: generateLoaders('less'),
-    sass: generateLoaders('sass', { indentedSyntax: true }),
+    sass: generateLoaders('sass', {indentedSyntax: true}),
     scss: generateLoaders('sass'),
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')
@@ -82,6 +90,10 @@ exports.styleLoaders = function (options) {
   return output
 }
 
+/**
+ * 创建操作系统通知
+ * @returns {function(*, *)}
+ */
 exports.createNotifierCallback = () => {
   const notifier = require('node-notifier')
 
