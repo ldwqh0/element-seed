@@ -28,7 +28,7 @@
   }
 </script>
 <style lang="less">
-  /*@import "./style/themes/default.less";*/
+  @import "./style/themes/default.less";
 
   /*#app {*/
   /*font-family: 'Avenir', Helvetica, Arial, sans-serif;*/
