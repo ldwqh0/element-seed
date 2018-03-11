@@ -11,6 +11,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 Vue.config.productionTip = false
 Vue.use(ElementUi)
 
+console.log('Created By ldwqh0@outlook.com')
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
