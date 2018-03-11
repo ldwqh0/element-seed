@@ -47,7 +47,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static', // 静态资源的路径
-    assetsPublicPath: '/', // 项目的的发布路径，必须以'/'结尾
+    assetsPublicPath: '/', // 项目的的发布路径，必须以'/'结尾,建议使用 '/CONTEXT_PATH'的模式
 
     /**
      * Source Maps

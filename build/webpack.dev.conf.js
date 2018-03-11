@@ -11,14 +11,13 @@ const portfinder = require('portfinder')
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   output: {
-    path: config.build.assetsRoot,//输出根文件夹
     publicPath: config.dev.assetsPublicPath,//发布路径
     filename: '[name].js?'//输出文件命名规则
   },
   module: {
     rules: utils.styleLoaders({sourceMap: config.dev.cssSourceMap, usePostCSS: true})
   },
-  mode: 'development',//模式
+  mode: process.env.NODE_ENV,//模式
   devtool: config.dev.devtool,
   devServer: {
     hot: true,
@@ -33,6 +32,10 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': process.env.NODE_ENV,
+      'CONTEXT_PATH': config.dev.assetsPublicPath
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
@@ -45,7 +48,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 
 module.exports = new Promise((resolve, reject) => {
   portfinder.basePort = process.env.PORT || config.dev.port
-  // 使用portfinder坚持可用的端口
+  // 使用portfinder查找可用的端口
   portfinder.getPort((err, port) => {
     if (err) {
       reject(err)

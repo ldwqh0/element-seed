@@ -55,6 +55,7 @@ exports.cssLoaders = function (options) {
 
     // Extract CSS when that option is specified
     // (which is the case during production build)
+    // 使用mini-css-extract-plugin完成CSS文件的提取工作
     if (options.extract) {
       return [MiniCssExtractPlugin.loader].concat(loaders)
     } else {

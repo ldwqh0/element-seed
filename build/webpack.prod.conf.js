@@ -1,19 +1,22 @@
+// 定义编译环境
 process.env.NODE_ENV = 'production'
-const utils = require('./utils')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const baseWebpackConfig = require('./webpack.base.conf')
 const config = require('../config')
+const utils = require('./utils')
 
 module.exports = merge(baseWebpackConfig, {
   output: {
     path: config.build.assetsRoot,//输出文件夹
-    publicPath: config.build.assetsPublicPath,// 发布路径
-    filename: '[name].[chunkhash].js?'//输出文件命名规则
+    publicPath: config.build.assetsPublicPath,// 发布路径,可以是/ 或者是http://yourdomain/的形式
+    filename: utils.assetsPath('js/[name].[chunkhash].js?'),//输出文件命名规则
+    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   mode: process.env.NODE_ENV,//模式
   module: {
@@ -55,19 +58,27 @@ module.exports = merge(baseWebpackConfig, {
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       // chunksSortMode: 'dependency'
     }),
+    new webpack.DefinePlugin({
+      'process.env': process.env.NODE_ENV,
+      'CONTEXT_PATH': config.build.assetsPublicPath
+    }),
     new MiniCssExtractPlugin({
       path: utils.assetsPath('css'),
       filename: '[name].[chunkhash].css',
       chunkFilename: utils.assetsPath('css/[id].[chunkhash].css')
     }),
     new webpack.NoEmitOnErrorsPlugin(),
-    // 复制静态资源到目录中
-    new CopyWebpackPlugin([
-      {
-        from: utils.resolve('static'),
-        to: config.build.assetsSubDirectory,
-        ignore: ['.*']
-      }
-    ])
+    //压缩css文件
+    new OptimizeCSSPlugin({
+      cssProcessorOptions: config.build.productionSourceMap
+        ? {safe: true, map: {inline: false}}
+        : {safe: true}
+    }),
+    // 复制静态资源到目录中，如果有更多需要复制的资源，请在这里添加
+    new CopyWebpackPlugin([{
+      from: utils.resolve('static'),
+      to: config.build.assetsSubDirectory,
+      ignore: ['.*']
+    }])
   ]
 })
