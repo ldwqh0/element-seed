@@ -16,6 +16,13 @@ module.exports = merge(baseWebpackConfig, {
     filename: '[name].[chunkhash].js?'//输出文件命名规则
   },
   mode: process.env.NODE_ENV,//模式
+  module: {
+    rules: utils.styleLoaders({
+      sourceMap: config.build.productionSourceMap,
+      extract: true,
+      usePostCSS: true
+    })
+  },
   optimization: {
     minimize: true,
     runtimeChunk: true,

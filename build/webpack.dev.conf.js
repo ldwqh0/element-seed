@@ -15,6 +15,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     publicPath: config.dev.assetsPublicPath,//发布路径
     filename: '[name].js?'//输出文件命名规则
   },
+  module: {
+    rules: utils.styleLoaders({sourceMap: config.dev.cssSourceMap, usePostCSS: true})
+  },
   mode: 'development',//模式
   devtool: config.dev.devtool,
   devServer: {
@@ -30,7 +33,6 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
   },
   plugins: [
-
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
