@@ -18,7 +18,7 @@ module.exports = merge(baseWebpackConfig, {
     filename: utils.assetsPath('js/[name].[chunkhash].js?'),//输出文件命名规则
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
-  mode: process.env.NODE_ENV,//模式
+  mode: 'production',//模式
   module: {
     rules: utils.styleLoaders({
       sourceMap: config.build.productionSourceMap,
@@ -59,7 +59,7 @@ module.exports = merge(baseWebpackConfig, {
       // chunksSortMode: 'dependency'
     }),
     new webpack.DefinePlugin({
-      'process.env': process.env.NODE_ENV,
+      'process.env': require('../config/prod.env'),
       'CONTEXT_PATH': config.build.assetsPublicPath
     }),
     new MiniCssExtractPlugin({

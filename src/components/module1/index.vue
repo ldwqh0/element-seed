@@ -66,8 +66,7 @@
       <li>
         <a
           href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
+          target="_blank">
           vue-loader
         </a>
       </li>

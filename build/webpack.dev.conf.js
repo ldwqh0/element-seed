@@ -1,6 +1,5 @@
-process.env.NODE_ENV = 'development' //定义为开发环境
+// process.env.NODE_ENV = 'development' //定义为开发环境
 const merge = require('webpack-merge')
-
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const baseWebpackConfig = require('./webpack.base.conf')
 const utils = require('./utils')
@@ -17,7 +16,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({sourceMap: config.dev.cssSourceMap, usePostCSS: true})
   },
-  mode: process.env.NODE_ENV,//模式
+  mode: 'development',//模式
   devtool: config.dev.devtool,
   devServer: {
     hot: true,
@@ -33,7 +32,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': process.env.NODE_ENV,
+      'process.env': require('../config/dev.env'),
       'CONTEXT_PATH': config.dev.assetsPublicPath
     }),
     new webpack.HotModuleReplacementPlugin(),
