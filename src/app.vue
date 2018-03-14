@@ -25,6 +25,10 @@
   @Component()
   export default class app extends Vue {
     name = 'App'
+
+    mounted () {
+      console.log('ddd')
+    }
   }
 </script>
 <style lang="less">
