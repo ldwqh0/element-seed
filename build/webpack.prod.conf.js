@@ -15,8 +15,8 @@ module.exports = merge(baseWebpackConfig, {
   output: {
     path: config.build.assetsRoot,//输出文件夹
     publicPath: config.build.assetsPublicPath,// 发布路径,可以是/ 或者是http://yourdomain/的形式
-    filename: utils.assetsPath('js/[name].[chunkhash].js?'),//输出文件命名规则
-    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
+    filename: utils.assetsPath('js/[name].js?_=[chunkhash]'),//输出文件命名规则
+    chunkFilename: utils.assetsPath('js/[id].js?_=[chunkhash]')
   },
   mode: 'production',//模式
   module: {
@@ -64,8 +64,8 @@ module.exports = merge(baseWebpackConfig, {
     }),
     new MiniCssExtractPlugin({
       path: utils.assetsPath('css'),
-      filename: '[name].[chunkhash].css',
-      chunkFilename: utils.assetsPath('css/[id].[chunkhash].css')
+      filename: '[name].css?_=[chunkhash]',
+      chunkFilename: utils.assetsPath('css/[id].css?_=[chunkhash]')
     }),
     new webpack.NoEmitOnErrorsPlugin(),
     //压缩css文件
