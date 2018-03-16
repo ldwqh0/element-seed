@@ -43,6 +43,7 @@ module.exports = merge(baseWebpackConfig, {
       })
     ]
   },
+  externals: {},
   plugins: [
     new HtmlWebpackPlugin({
       filename: config.build.index,
