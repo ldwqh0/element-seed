@@ -79,6 +79,10 @@
         </a>
       </li>
     </ul>
+
+    <h1>
+      <a href="http://element.eleme.io/#/zh-CN" style="color: red" target="_blank">element资料请点击这里</a>
+    </h1>
   </div>
 </template>
 
