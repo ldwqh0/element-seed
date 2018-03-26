@@ -23,11 +23,11 @@
   import { Component } from 'vue-property-decorator'
 
   @Component()
-  export default class app extends Vue {
+  export default class App extends Vue {
     name = 'App'
 
     mounted () {
-      console.log('ddd')
+      console.log('The App component mounted')
     }
   }
 </script>
