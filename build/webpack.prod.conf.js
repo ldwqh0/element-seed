@@ -23,15 +23,13 @@ module.exports = merge(baseWebpackConfig, {
     rules: utils.styleLoaders({
       sourceMap: config.build.productionSourceMap,
       extract: true,
-      usePostCSS: true
+      usePostCSS: true,
+      minimize: true
     })
   },
   optimization: {
     minimize: true,
     runtimeChunk: true,
-    splitChunks: {
-      chunks: 'all' //代码切分
-    },
     minimizer: [
       // 对js文件进行压缩
       new UglifyJsPlugin({
@@ -57,11 +55,11 @@ module.exports = merge(baseWebpackConfig, {
         // https://github.com/kangax/html-minifier#options-quick-reference
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
-      // chunksSortMode: 'dependency'
+      chunksSortMode: 'dependency'
     }),
     new webpack.DefinePlugin({
       'process.env': require('../config/prod.env'),
-      'CONTEXT_PATH': config.build.assetsPublicPath
+      'CONTEXT_PATH': JSON.stringify(config.build.assetsPublicPath)
     }),
     new MiniCssExtractPlugin({
       path: utils.assetsPath('css'),
@@ -69,11 +67,11 @@ module.exports = merge(baseWebpackConfig, {
       chunkFilename: utils.assetsPath('css/[id].css?_=[chunkhash]')
     }),
     new webpack.NoEmitOnErrorsPlugin(),
-    //压缩css文件
+    // 
     new OptimizeCSSPlugin({
       cssProcessorOptions: config.build.productionSourceMap
-        ? {safe: true, map: {inline: false}}
-        : {safe: true}
+        ? { safe: true, map: { inline: false } }
+        : { safe: true }
     }),
     // 复制静态资源到目录中，如果有更多需要复制的资源，请在这里添加
     new CopyWebpackPlugin([{
