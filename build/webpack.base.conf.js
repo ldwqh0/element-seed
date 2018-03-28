@@ -15,14 +15,11 @@ const createLintingRule = () => ({
 })
 
 module.exports = {
-  entry: {
-    app: utils.resolve('src/main.js') //程序入口点
-  },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': utils.resolve('src'),
+      '@': utils.resolve('src')
     }
   },
   module: {
