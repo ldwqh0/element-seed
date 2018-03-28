@@ -10,20 +10,26 @@ const portfinder = require('portfinder')
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   output: {
-    publicPath: config.dev.assetsPublicPath,//发布路径
-    filename: '[name].js?'//输出文件命名规则
+    publicPath: config.dev.assetsPublicPath, // 发布路径
+    filename: '[name].js' // 输出文件命名规则
   },
   module: {
-    rules: utils.styleLoaders({sourceMap: config.dev.cssSourceMap, usePostCSS: true})
+    rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
   },
-  mode: 'development',//模式
+  mode: 'development', // 模式
   devtool: config.dev.devtool,
   devServer: {
     hot: true,
     contentBase: false,
     publicPath: config.dev.assetsPublicPath,
+    historyApiFallback: {
+      rewrites: [{
+        from: /./, 
+        to: config.dev.assetsPublicPath
+      }]
+    },
     overlay: config.dev.errorOverlay
-      ? {warnings: false, errors: true}
+      ? { warnings: false, errors: true }
       : false,
     host: config.dev.host,
     port: config.dev.port,
@@ -33,7 +39,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': require('../config/dev.env'),
-      'CONTEXT_PATH': config.dev.assetsPublicPath
+      'CONTEXT_PATH': JSON.stringify(config.dev.assetsPublicPath)
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
@@ -60,7 +66,7 @@ module.exports = new Promise((resolve, reject) => {
       // Add FriendlyErrorsPlugin
       devWebpackConfig.plugins.push(new FriendlyErrorsPlugin({
         compilationSuccessInfo: {
-          messages: [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`],
+          messages: [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`]
         },
         onErrors: config.dev.notifyOnErrors
           ? utils.createNotifierCallback()
