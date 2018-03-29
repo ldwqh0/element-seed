@@ -30,10 +30,6 @@ module.exports = {
         loader: 'babel-loader',
         include: [utils.resolve('src'), utils.resolve('test')]
       }, {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: vueLoaderConfig
-      }, {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {

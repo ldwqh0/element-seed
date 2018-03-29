@@ -6,14 +6,11 @@ const path = require('path')
 
 module.exports = {
   dev: {
+    mode: "development",
     // Paths
     assetsSubDirectory: 'static', // 静态资源的路径
     assetsPublicPath: '/', // 项目发布路径
-    proxyTable: {
-      '/w': {
-        target: 'http://127.0.0.1:8080'
-      }
-    }, // devServer反向代理列表
+    proxyTable: {}, // devServer反向代理列表
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -45,6 +42,7 @@ module.exports = {
   },
 
   build: {
+    mode: "production",
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
 
@@ -57,7 +55,7 @@ module.exports = {
      * Source Maps
      */
 
-    productionSourceMap: true,
+    productionSourceMap: false,
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',
 

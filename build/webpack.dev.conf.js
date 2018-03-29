@@ -1,4 +1,3 @@
-// process.env.NODE_ENV = 'development' //定义为开发环境
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const baseWebpackConfig = require('./webpack.base.conf')
@@ -7,16 +6,27 @@ const config = require('../config')
 const webpack = require('webpack')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+const vueLoaderConfig = require('./vue-loader.conf')
+const mode = 'development'
 
 const devWebpackConfig = merge(baseWebpackConfig, {
+  mode, // 模式
   output: {
     publicPath: config.dev.assetsPublicPath, // 发布路径
     filename: '[name].js' // 输出文件命名规则
   },
   module: {
-    rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
+    rules: [
+      ...utils.styleLoaders({
+        sourceMap: config.dev.cssSourceMap,
+        usePostCSS: true
+      }), {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: vueLoaderConfig(mode)
+      }
+    ]
   },
-  mode: 'development', // 模式
   devtool: config.dev.devtool,
   devServer: {
     hot: true,
@@ -24,7 +34,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     publicPath: config.dev.assetsPublicPath,
     historyApiFallback: {
       rewrites: [{
-        from: /./, 
+        from: /./,
         to: config.dev.assetsPublicPath
       }]
     },
@@ -34,7 +44,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     host: config.dev.host,
     port: config.dev.port,
     proxy: config.dev.proxyTable,
-    quiet: true, // necessary for FriendlyErrorsPlugin
+    quiet: true // necessary for FriendlyErrorsPlugin
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -72,7 +82,6 @@ module.exports = new Promise((resolve, reject) => {
           ? utils.createNotifierCallback()
           : undefined
       }))
-
       resolve(devWebpackConfig)
     }
   })

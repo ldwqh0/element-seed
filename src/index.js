@@ -3,10 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './config/router'
-// import './style/themes/default.less'
 import './config/http'
 import ElementUi from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+// import './style/themes/default.less'
 
 Vue.config.productionTip = false
 Vue.use(ElementUi)
