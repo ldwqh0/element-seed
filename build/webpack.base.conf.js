@@ -16,7 +16,7 @@ const createLintingRule = () => ({
 
 module.exports = {
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.ts', '.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': utils.resolve('src')
@@ -29,6 +29,13 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [utils.resolve('src'), utils.resolve('test')]
+      },{
+        test: /\.ts$/,
+        loader: 'ts-loader',
+        include: [utils.resolve('src'), utils.resolve('test')],
+        options: {
+          appendTsSuffixTo: [/\.vue$/]
+        }
       }, {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
