@@ -1,12 +1,12 @@
 <template>
   <div>这是模块2的内容</div>
 </template>
-<script lang="ts">
+<script>
   import Vue from 'vue'
   import { Component } from 'vue-property-decorator'
   @Component
   export default class ModuleIndex extends Vue {
-    mounted ():void {
+    mounted () {
       console.dir(this)
     }
   }

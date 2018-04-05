@@ -29,13 +29,6 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [utils.resolve('src'), utils.resolve('test')]
-      },{
-        test: /\.ts$/,
-        loader: 'ts-loader',
-        include: [utils.resolve('src'), utils.resolve('test')],
-        options: {
-          appendTsSuffixTo: [/\.vue$/]
-        }
       }, {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',

@@ -12,7 +12,7 @@ export default new Router({
     }, {
       path: '/m2',
       name: 'Module2',
-      component: () => import('@/components/module2')
+      component: () => import('@/components/module2/index.vue')
     }
   ]
 })
