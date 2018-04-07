@@ -14,7 +14,7 @@ module.exports = {
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
-    port: 80, // 服务端口
+    port: 8080, // 服务端口
     autoOpenBrowser: false, // 编译完成后是否自动打开浏览器
     errorOverlay: true, // 在devServer中，是否启用错误输出层
     notifyOnErrors: false, // 是否在系统通知区域提示错误
