@@ -5,7 +5,7 @@
   import Vue from 'vue'
   import { Component } from 'vue-property-decorator'
   @Component
-  export default class ModuleIndex extends Vue {
+  export default class Module2 extends Vue {
     mounted () {
       console.dir(this)
     }
