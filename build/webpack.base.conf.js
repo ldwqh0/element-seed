@@ -1,5 +1,6 @@
 const utils = require('./utils')
 const vueLoaderConfig = require('./vue-loader.conf')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const config = require('../config')
 
 // 创建eslint规则
@@ -51,5 +52,8 @@ module.exports = {
           name: utils.assetsPath('fonts/[name].[hash].[ext]')
         }
       }]
-  }
+  },
+  plugins: [
+    new VueLoaderPlugin()
+  ]
 }
