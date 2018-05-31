@@ -4,15 +4,12 @@ const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const baseWebpackConfig = require('./webpack.base.conf')
 const config = require('../config')
 const utils = require('./utils')
-const vueLoaderConfig = require("./vue-loader.conf")
-const evn = require('../config/prod.env')
 const mode = 'production'
-
 module.exports = merge(baseWebpackConfig, {
   mode,//模式
   output: {
@@ -20,20 +17,6 @@ module.exports = merge(baseWebpackConfig, {
     publicPath: config.build.assetsPublicPath,// 发布路径,可以是/ 或者是http://yourdomain/的形式
     filename: utils.assetsPath('js/[name].js?_=[chunkhash]'),//输出文件命名规则
     chunkFilename: utils.assetsPath('js/[id].js?_=[chunkhash]')
-  },
-  module: {
-    rules: [
-      ...utils.styleLoaders({
-        sourceMap: config.build.productionSourceMap,
-        extract: true,
-        usePostCSS: true,
-        minimize: true
-      }), {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: vueLoaderConfig(mode)
-      }
-    ]
   },
   optimization: {
     minimize: true,
@@ -47,10 +30,8 @@ module.exports = merge(baseWebpackConfig, {
           mangle: true // 启用代码混淆
         }
       }),
-      new OptimizeCSSPlugin({
-        cssProcessorOptions: config.build.productionSourceMap
-          ? {safe: true, map: {inline: false}}
-          : {safe: true}
+      new OptimizeCSSAssetsPlugin({
+        assetNameRegExp: /\.css\?_=[a-z0-9]*$/g
       })
     ]
   },

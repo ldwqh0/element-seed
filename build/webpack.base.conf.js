@@ -1,7 +1,9 @@
 const utils = require('./utils')
-const vueLoaderConfig = require('./vue-loader.conf')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const config = require('../config')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+const cssSourceMap = process.env.NODE_ENV === 'production' ? config.build.productionSourceMap : config.dev.cssSourceMap
 
 // 创建eslint规则
 const createLintingRule = () => ({
@@ -27,9 +29,20 @@ module.exports = {
     rules: [
       ...(config.dev.useEslint ? [createLintingRule()] : []),
       {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          transformAssetUrls: {
+            video: ['src', 'poster'],
+            source: 'src',
+            img: 'src',
+            image: 'xlink:href'
+          }
+        }
+      }, {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [utils.resolve('src'), utils.resolve('test')]
+        exclude: file => (/node_modules/.test(file) && !/\.vue\.js/.test(file))
       }, {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
@@ -51,6 +64,31 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash].[ext]')
         }
+      }, {
+        test: /\.less$/,
+        use: [{
+          loader: process.env.NODE_ENV === 'production' ? MiniCssExtractPlugin.loader : 'vue-style-loader'
+        }, {
+          loader: 'css-loader',
+          options: {
+            sourceMap: cssSourceMap
+          }
+        }, {
+          loader: 'less-loader',
+          options: {
+            sourceMap: cssSourceMap
+          }
+        }]
+      }, {
+        test: /\.css$/,
+        use: [{
+          loader: process.env.NODE_ENV === 'production' ? MiniCssExtractPlugin.loader : 'vue-style-loader',
+        }, {
+          loader: 'css-loader',
+          options: {
+            sourceMap: cssSourceMap
+          }
+        }]
       }]
   },
   plugins: [

@@ -6,26 +6,12 @@ const config = require('../config')
 const webpack = require('webpack')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
-const vueLoaderConfig = require('./vue-loader.conf')
-const mode = 'development'
 
 const devWebpackConfig = merge(baseWebpackConfig, {
-  mode, // 模式
+  mode: 'development', // 模式
   output: {
     publicPath: config.dev.assetsPublicPath, // 发布路径
     filename: '[name].js' // 输出文件命名规则
-  },
-  module: {
-    rules: [
-      ...utils.styleLoaders({
-        sourceMap: config.dev.cssSourceMap,
-        usePostCSS: true
-      }), {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: vueLoaderConfig(mode)
-      }
-    ]
   },
   devtool: config.dev.devtool,
   devServer: {
@@ -39,7 +25,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       }]
     },
     overlay: config.dev.errorOverlay
-      ? { warnings: false, errors: true }
+      ? {warnings: false, errors: true}
       : false,
     host: config.dev.host,
     port: config.dev.port,
