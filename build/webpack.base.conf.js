@@ -1,3 +1,4 @@
+'use strict'
 const utils = require('./utils')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const config = require('../config')

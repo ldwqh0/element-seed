@@ -1,4 +1,4 @@
-// 定义编译环境
+'use strict'
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -9,9 +9,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const baseWebpackConfig = require('./webpack.base.conf')
 const config = require('../config')
 const utils = require('./utils')
-const mode = 'production'
+
 module.exports = merge(baseWebpackConfig, {
-  mode,//模式
+  mode: 'production',//模式
   output: {
     path: config.build.assetsRoot,//输出文件夹
     publicPath: config.build.assetsPublicPath,// 发布路径,可以是/ 或者是http://yourdomain/的形式
