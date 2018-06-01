@@ -21,6 +21,10 @@ module.exports = merge(baseWebpackConfig, {
   optimization: {
     minimize: true,
     runtimeChunk: true,
+    splitChunks: { // 模块分割的选项，
+      chunks: 'all',
+      // minSize: 30000, //默认只有当模块大小大于30Kb的时候才会启用模块分割，可以通过指定一个极小值强制对所有模块进行分割
+    },
     minimizer: [
       // 对js文件进行压缩,在output之中设置了filename和chunkFilename之后，webpack4的默认压缩就无效了
       new UglifyJsPlugin({
