@@ -3,7 +3,7 @@ const utils = require('./utils')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const config = require('../config')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const cssSourceMap = process.env.NODE_ENV === 'production' ? config.build.productionSourceMap : config.dev.cssSourceMap
 
 // 创建eslint规则
