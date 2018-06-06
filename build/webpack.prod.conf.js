@@ -64,13 +64,6 @@ module.exports = merge(baseWebpackConfig, {
       filename: '[name].css?_=[chunkhash]',
       chunkFilename: utils.assetsPath('css/[id].css?_=[chunkhash]')
     }),
-    new webpack.NoEmitOnErrorsPlugin(),
-
-    // 复制静态资源到目录中，如果有更多需要复制的资源，请在这里添加
-    new CopyWebpackPlugin([{
-      from: utils.resolve('static'),
-      to: config.build.assetsSubDirectory,
-      ignore: ['.*']
-    }])
+    new webpack.NoEmitOnErrorsPlugin()
   ]
 })

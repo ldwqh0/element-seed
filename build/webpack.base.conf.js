@@ -43,7 +43,7 @@ module.exports = {
       }, {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: file => (/node_modules/.test(file) && !/\.vue\.js/.test(file))
+        exclude: file => /node_modules/.test(file) && !/\.vue\.js/.test(file) && !/element-ui(\\|\/)(src|packages)/.test(file)
       }, {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
@@ -93,6 +93,13 @@ module.exports = {
       }]
   },
   plugins: [
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+
+    // 复制静态资源到目录中，如果有更多需要复制的资源，请在这里添加
+    new CopyWebpackPlugin([{
+      from: utils.resolve('static'),
+      to: config.build.assetsSubDirectory,
+      ignore: ['.*']
+    }])
   ]
 }
