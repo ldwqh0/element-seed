@@ -14,7 +14,7 @@ module.exports = merge(baseWebpackConfig, {
   output: {
     path: config.build.assetsRoot,//输出文件夹
     publicPath: config.build.assetsPublicPath,// 发布路径,可以是/ 或者是http://yourdomain/的形式
-    filename: utils.assetsPath('js/[name].js?_=[chunkhash]'),//输出文件命名规则
+    filename: utils.assetsPath('js/[name].js?_=[chunkhash]'),//输出文件命名规则，使用查询参数解决缓存问题
     chunkFilename: utils.assetsPath('js/[id].js?_=[chunkhash]')
   },
   optimization: {
@@ -34,10 +34,12 @@ module.exports = merge(baseWebpackConfig, {
         }
       }),
       new OptimizeCSSAssetsPlugin({
+        // 采用了文件名后接查询参数的方式解决缓存问题，再打包的时候，css压缩找不到正确的文件名了，需要重新配置规则
         assetNameRegExp: /\.css\?_=[a-z0-9]*$/g
       })
     ]
   },
+  // 如果使用了cdn需要在这里设置打包时不包含的模块
   externals: {},
   plugins: [
     new HtmlWebpackPlugin({
@@ -56,6 +58,7 @@ module.exports = merge(baseWebpackConfig, {
     }),
     new webpack.DefinePlugin({
       'process.env': require('../config/prod.env'),
+      // 定义一个全局的上下文变量，目的是为了发布时能够通过目录区分不同的项目，而不用单独占用一个端口
       'CONTEXT_PATH': JSON.stringify(config.build.assetsPublicPath)
     }),
     new MiniCssExtractPlugin({
