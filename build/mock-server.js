@@ -1,12 +1,11 @@
+const path = require('path')
+const fs = require('fs')
 module.exports = (app) => {
   app.get('/menus', (req, rsp) => {
-    rsp.json([{
-      id: 1,
-      path: '/form'
-    }, {
-      id: 2,
-      path: '/table'
-    }])
-    rsp.end()
+    let file = path.resolve(__dirname, '..', 'data', 'menus.json')
+    fs.readFile(file, 'utf8', (err, content) => {
+      rsp.write(content)
+      rsp.end()
+    })
   })
 }

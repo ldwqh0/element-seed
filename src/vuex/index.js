@@ -10,16 +10,21 @@ export default new Vuex.Store({
       count: 0,
       message: ''
     },
-    loadingCount: 0
+    loadingCount: 0,
+    theme: 'left',
+    menus: []
   },
   mutations: {
-    updateTitle (state, payload) {
-      if (payload.title) {
-        state.title = payload.title
+    updateTitle (state, {title}) {
+      if (title) {
+        state.title = title
       }
     },
-    updateUser (state, payload) {
-      state.user = payload.user
+    switchTheme (state, theme) {
+      state.theme = theme
+    },
+    updateUser (state, {user}) {
+      state.user = user
     },
     addError (state, payload) {
       let count = 1 + state.error.count
@@ -36,6 +41,16 @@ export default new Vuex.Store({
     loadingComplete (state) {
       state.loadingCount--
       console.debug('after complete the loading count is ', state.loadingCount)
+    },
+    updateMenu (state, menus) {
+      state.menus = menus
+    }
+  },
+  actions: {
+    loadMenu ({commit}) {
+      Vue.http.get('/menus').then(({data}) => {
+        commit('updateMenu', data)
+      })
     }
   }
 })

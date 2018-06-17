@@ -1,30 +1,35 @@
 <template>
-  <el-container id="app">
-    <el-header>这是头部</el-header>
-    <el-container>
-      <el-aside style="width: 200px;">
-        <el-menu router>
-          <el-menu-item index="1" route="/">模块1</el-menu-item>
-          <el-menu-item index="2" route="/m2">模块2</el-menu-item>
-        </el-menu>
-      </el-aside>
-      <el-main>
-        <router-view/>
-      </el-main>
-    </el-container>
-    <el-footer>
-      这是应用底部
-    </el-footer>
-  </el-container>
+  <left-theme-template v-if="theme==='left'"/>
+  <top-theme-template v-else-if="theme==='top'"/>
+  <div v-else>你没有选择任何主题</div>
 </template>
 
 <script>
   import Vue from 'vue'
   import { Component } from 'vue-property-decorator'
+  import { Mutation, State, Action } from 'vuex-class'
 
-  @Component()
+  @Component({
+    components: {
+      // 注册两个主题组件
+      leftThemeTemplate: () => import('./components/theme/left-main'),
+      topThemeTemplate: () => import('./components/theme/top-main')
+    }
+  })
   export default class App extends Vue {
     name = 'App'
+    @State('theme')
+    theme
+
+    @Mutation('switchTheme')
+    switchTheme
+
+    @Action('loadMenu')
+    loadMenu
+
+    created () {
+      this.loadMenu()
+    }
 
     mounted () {
       console.log('The App component mounted')
