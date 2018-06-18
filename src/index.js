@@ -12,6 +12,8 @@ import 'element-ui/lib/theme-chalk/index.css'
 import store from './vuex'
 import './config/http'
 import { AjaxPlugin } from './plugins'
+// 载入模拟数据，在对接后端服务器接口时，取消掉
+import '../data'
 
 import { SampleModule } from './module'
 

@@ -6,7 +6,7 @@ const config = require('../config')
 const webpack = require('webpack')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
-const mockServer = require('./mock-server')
+// const mockServer = require('./mock-server')
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   mode: 'development', // 模式
@@ -32,7 +32,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     port: config.dev.port,
     proxy: config.dev.proxyTable,
     quiet: true, // necessary for FriendlyErrorsPlugin
-    before: mockServer
+    // before: mockServer
   },
   plugins: [
     new webpack.DefinePlugin({
