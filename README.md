@@ -20,7 +20,14 @@ npm run build
 项目使用vue-cli构建，但cli生成的项目不支持webpack4,因此在项目中使用[mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin)替换掉了[extract-text-webpack-plugin](https://github.com/webpack-contrib/extract-text-webpack-plugin)  
 
 项目中引入了[vue-property-decorator](https://github.com/kaorun343/vue-property-decorator)和[vuex-class](https://github.com/ktsn/vuex-class),可用使用一系列的Decorator来构建Component以及使用decorator处理vuex的库  
-组件信息请参见[element](http://element.eleme.io)
+引入了[element-datatables](https://github.com/ldwqh0/element-datatables)一个简洁的，服务器表格组件，通过一定的契约和简单的配置即可实现服务端数据展示的表格组件。  
+element组件信息请参见[element](http://element.eleme.io)
+
+## 特点
+* 基于es6 class的写法，符合面向对象的编程思想
+* 基于业务模块的代码拆分，将每个业务模块独立为插件，在项目中挂载插件即可实现增加业务模块的功能，适合团队开发
+* 动态主题和布局切换
+* 
 
 ## 关于模拟数据。
 默认支持两种方式的模拟数据
