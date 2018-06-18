@@ -9,7 +9,7 @@ module.exports = {
     mode: "development",
     // Paths
     assetsSubDirectory: 'static', // 静态资源的路径
-    assetsPublicPath: '/', // 项目发布路径
+    assetsPublicPath: '/element-seed/', // 项目发布路径
     proxyTable: {}, // devServer反向代理列表
 
     // Various Dev Server settings
@@ -49,7 +49,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static', // 静态资源的路径
-    assetsPublicPath: '/', // 项目的的发布路径，必须以'/'结尾,建议使用 '/CONTEXT_PATH'的模式
+    assetsPublicPath: '/element-seed/', // 项目的的发布路径，必须以'/'结尾,建议使用 '/CONTEXT_PATH'的模式
 
     /**
      * Source Maps
