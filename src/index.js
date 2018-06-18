@@ -1,13 +1,16 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import 'babel-polyfill' // 引入填充库,解决IE不能显示的问题
+// 引入填充库,解决IE不能显示的问题
+import 'babel-polyfill'
+/* (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+ * 引入vue,在webpack.base.conf中通过别名设置使用standalone版本或者runtime-only版本
+ * 详细信息请参考 https://vuejs.org/v2/guide/installation.html#Runtime-Compiler-vs-Runtime-only
+ */
 import Vue from 'vue'
 import App from './App.vue'
 import router from './config/router'
-import './config/http'
 import ElementUi from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import store from './vuex'
+import './config/http'
 import { AjaxPlugin } from './plugins'
 
 import { SampleModule } from './module'
