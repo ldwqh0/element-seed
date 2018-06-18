@@ -39,7 +39,7 @@ devServer: {
   before: mockServer //启用改配置
 }
 ```
-mock-server.js导出的是一个function,具体的请参考[webpack说明](https://webpack.js.org/configuration/dev-server/#devserver-before)
+mock-server.js导出的是一个function,具体的请参考[webpack说明](https://webpack.js.org/configuration/dev-server/#devserver-before)  
 2. 修改data/index.js  
 这里使用mockjs生成测试数据，具体文档请参考[mockjs文档](http://mockjs.com/)  
 
