@@ -1,18 +1,26 @@
 <template>
   <el-container id="app">
-    <el-header><a href="javascript:void(0)" @click="switchTheme('left')">主题1</a>
-      <el-menu mode="horizontal" router>
-        <menu-item v-for="(menu,index) in menus"
-                   :key="index"
-                   :item="menu"/>
-      </el-menu>
+    <el-header>
+      <el-row>
+        <el-col :span="12">
+          <h2> xz element-seed template</h2>
+        </el-col>
+        <el-col :span="12">
+          <el-menu mode="horizontal"
+                   router>
+            <menu-item v-for="(menu,index) in menus"
+                       :key="index"
+                       :item="menu"/>
+          </el-menu>
+        </el-col>
+      </el-row>
     </el-header>
     <el-main>
       <router-view/>
     </el-main>
 
     <el-footer>
-      这是应用底部
+      这是应用底部<a href="javascript:void(0)" @click="switchTheme('left')">主题1</a>
     </el-footer>
   </el-container>
 </template>

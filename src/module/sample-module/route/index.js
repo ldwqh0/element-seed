@@ -10,4 +10,8 @@ export default [{
   name: 'table2',
   path: '/table2',
   component: () => import('../component/TableTwo')
+}, {
+  name: 'theme',
+  path: '/theme',
+  component: () => import('../component/ThemeSwitch')
 }]

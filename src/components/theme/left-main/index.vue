@@ -1,6 +1,10 @@
 <template>
   <el-container id="app">
-    <el-header height="30px"><a href="javascript:void(0)" @click="switchTheme('top')">主题二</a></el-header>
+    <el-header>
+      <el-row>
+        <el-col :span="12"><h2> xz element-seed template</h2></el-col>
+      </el-row>
+    </el-header>
     <el-container>
       <el-aside style="width: 200px;">
         <el-menu router>
@@ -14,7 +18,7 @@
       </el-main>
     </el-container>
     <el-footer height="30px">
-      这是应用底部
+      这是应用底部<a href="javascript:void(0)" @click="switchTheme('top')">主题二</a>
     </el-footer>
   </el-container>
 </template>
