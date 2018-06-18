@@ -17,9 +17,6 @@
         <router-view/>
       </el-main>
     </el-container>
-    <el-footer height="30px">
-      这是应用底部<a href="javascript:void(0)" @click="switchTheme('top')">主题二</a>
-    </el-footer>
   </el-container>
 </template>
 
