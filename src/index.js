@@ -6,11 +6,11 @@ import 'babel-polyfill'
  */
 import Vue from 'vue'
 import App from './App.vue'
-import router from './config/router'
+import VueRouter from 'vue-router'
 import ElementUi from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import store from './vuex'
-import './config/http'
+import { httpInstance, router } from './config'
 import { AjaxPlugin } from './plugins'
 // 载入模拟数据，在对接后端服务器接口时，取消掉
 import '../data'
@@ -19,7 +19,8 @@ import { SampleModule } from './module'
 
 Vue.config.productionTip = false
 Vue.use(ElementUi)
-Vue.use(AjaxPlugin)
+Vue.use(VueRouter)
+Vue.use(AjaxPlugin, httpInstance)
 Vue.use(SampleModule, {store, router})
 
 console.log('Created By ldwqh0@outlook.com')

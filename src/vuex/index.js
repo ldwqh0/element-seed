@@ -1,8 +1,8 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
+import Vuex, { Store } from 'vuex'
+Vue.use(Vuex) // use必须在创建store实例之前调用
 
-Vue.use(Vuex)
-export default new Vuex.Store({
+export default new Store({
   state: {
     title: '应用',
     user: {},

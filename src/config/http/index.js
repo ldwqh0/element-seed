@@ -1,20 +1,24 @@
-import Vue from 'vue'
-import { AjaxPlugin } from '../../plugins'
+// import Vue from 'vue'
+// import { AjaxPlugin } from '../../plugins'
 import store from '@/vuex'
+import axios from 'axios'
 
-Vue.use(AjaxPlugin)
+const instance = axios.create()
 
-Vue.http.interceptors.request.use(config => {
+// Vue.use(AjaxPlugin)
+
+instance.interceptors.request.use(config => {
   store.commit('loading')
   return config
 }, error => {
   return Promise.reject(error)
 })
 
-Vue.http.interceptors.response.use(response => {
+instance.interceptors.response.use(response => {
   store.commit('loadingComplete')
   return response
 }, error => {
   store.commit('loadingComplete')
   return Promise.reject(error)
 })
+export default instance
