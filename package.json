@@ -24,6 +24,7 @@
     "vuex-class": "^0.3.0"
   },
   "devDependencies": {
+    "ajv": "^6.5.2",
     "autoprefixer": "^8.1.0",
     "babel-core": "^6.22.1",
     "babel-eslint": "^8.2.1",
@@ -38,8 +39,8 @@
     "babel-preset-stage-2": "^6.22.0",
     "chalk": "^2.0.1",
     "copy-webpack-plugin": "^4.5.1",
-    "css-loader": "^0.28.0",
-    "eslint": "^4.15.0",
+    "css-loader": "^1.0.0",
+    "eslint": "^5.0.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-friendly-formatter": "^4.0.0",
     "eslint-loader": "^2.0.0",
@@ -55,7 +56,6 @@
     "less-loader": "^4.1.0",
     "mini-css-extract-plugin": "^0.4.0",
     "mockjs": "^1.0.1-beta3",
-    "momentjs": "^2.0.0",
     "node-notifier": "^5.1.2",
     "optimize-css-assets-webpack-plugin": "^4.0.0",
     "ora": "^2.0.0",
