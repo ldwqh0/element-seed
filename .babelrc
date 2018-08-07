@@ -25,6 +25,7 @@
     ],
     "transform-vue-jsx",
     "transform-runtime",
+    "transform-decorators-legacy",
     "transform-class-properties"
   ]
 }
