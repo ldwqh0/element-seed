@@ -1,8 +1,7 @@
 {
   "presets": [
-    "stage-2",
     [
-      "env",
+      "@babel/preset-env",
       {
         "modules": false,
         "targets": {
@@ -23,9 +22,28 @@
         "styleLibraryName": "theme-chalk"
       }
     ],
-    "transform-vue-jsx",
-    "transform-runtime",
-    "transform-decorators-legacy",
-    "transform-class-properties"
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-syntax-dynamic-import",
+    [
+      "@babel/plugin-proposal-object-rest-spread",
+      {
+        "loose": true
+      }
+    ],
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
+    [
+      "@babel/plugin-proposal-class-properties",
+      {
+        "loose": true
+      }
+    ],
+    "@babel/plugin-proposal-export-default-from",
+    "@babel/plugin-proposal-export-namespace-from",
+    "@babel/plugin-proposal-numeric-separator"
   ]
 }

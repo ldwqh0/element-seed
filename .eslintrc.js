@@ -36,6 +36,7 @@ module.exports = {
         'allowFirstLine': true
       }
     }],
+    'object-curly-spacing': 'off',
     'vue/script-indent': ['error', 2, {'baseIndent': 1}],
     'indent': 'off'
   }

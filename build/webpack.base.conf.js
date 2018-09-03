@@ -43,7 +43,14 @@ module.exports = {
       }, {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: file => /node_modules/.test(file) && !/\.vue\.js/.test(file) && !/element-ui(\\|\/)(src|packages)/.test(file)
+        exclude: file => {
+          let r = /node_modules/.test(file) && !/\.vue\.js/.test(file) && !/element-ui(\\|\/)(src|packages)/.test(file)
+          if (r) {
+
+          } else {
+            console.log(file)
+          }
+        }
       }, {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',

@@ -12,7 +12,7 @@
 <script>
   import Vue from 'vue'
   import { Component } from 'vue-property-decorator'
-  import EleDatatables from 'element-datatables'
+  import EleDatatables from 'element-datatables/dist/index'
 
   @Component({
     components: {

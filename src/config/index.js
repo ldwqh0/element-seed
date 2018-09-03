@@ -1,2 +1,2 @@
-export { default as httpInstance } from './http'
-export { default as router } from './router'
+export httpInstance from './http'
+export router from './router'

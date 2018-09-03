@@ -1,5 +1,5 @@
 // 引入填充库,解决IE不能显示的问题
-import 'babel-polyfill'
+import '@babel/polyfill'
 /* (runtime-only or standalone) has been set in webpack.base.conf with an alias.
  * 引入vue,在webpack.base.conf中通过别名设置使用standalone版本或者runtime-only版本
  * 详细信息请参考 https://vuejs.org/v2/guide/installation.html#Runtime-Compiler-vs-Runtime-only
@@ -25,6 +25,9 @@ Vue.use(SampleModule, {store, router})
 
 console.log('Created By ldwqh0@outlook.com')
 
+let a = 100_100_00
+console.log(a)
+
 /**
  *  一定要使用 render函数创建app,这样就不需要依赖完整的esm，也就是不需要打包vue的编译模块了，
  *  vue的模板编译模块体积打约是25KB左右
@@ -33,7 +36,5 @@ console.log('Created By ldwqh0@outlook.com')
 new Vue({
   router,
   store,
-  render (createElement) {
-    return createElement(App)
-  }
+  render: h => h(App)
 }).$mount('#app')
