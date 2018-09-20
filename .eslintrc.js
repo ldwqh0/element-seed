@@ -3,7 +3,9 @@
 module.exports = {
   root: true,
   parserOptions: {
-    ecmaVersion: 9,
+    ecmaFeatures: {
+      legacyDecorators: true
+    },
     parser: 'babel-eslint'
   },
   env: {
@@ -36,8 +38,9 @@ module.exports = {
         'allowFirstLine': true
       }
     }],
-    'object-curly-spacing': 'off',
-    'vue/script-indent': ['error', 2, {'baseIndent': 1}],
+    'template-curly-spacing': 'off', // 在模板字符串里面里面的变量${ var }的形式，前后是否留空格
+    'object-curly-spacing': 'off', // 包裹对象的大括号前后是否留空格
+    'vue/script-indent': ['error', 2, { 'baseIndent': 1 }],
     'indent': 'off'
   }
 }

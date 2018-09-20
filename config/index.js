@@ -6,7 +6,7 @@ const path = require('path')
 
 module.exports = {
   dev: {
-    mode: "development",
+    mode: 'development',
     // Paths
     assetsSubDirectory: 'static', // 静态资源的路径
     assetsPublicPath: '/element-seed/', // 项目发布路径
@@ -22,7 +22,7 @@ module.exports = {
 
     // 是否使用 Eslint Loader 在编译过程中检查书写错误?
     // 格式错误会在控制台显示出来
-    useEslint: false, //
+    useEslint: true, //
     // 是否在devServer中用一个单独的层显示格式错误
     showEslintErrorsInOverlay: true,
 
@@ -42,7 +42,7 @@ module.exports = {
   },
 
   build: {
-    mode: "production",
+    mode: 'production',
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
 

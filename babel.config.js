@@ -3,7 +3,7 @@ module.exports = function (api) {
   return {
     presets: [
       [
-        '@babel/env',
+        '@babel/preset-env',
         {
           'modules': false,
           'targets': {
@@ -12,7 +12,8 @@ module.exports = function (api) {
               'last 2 versions',
               'not ie <= 8'
             ]
-          }
+          },
+          'useBuiltIns': 'entry'
         }
       ]
     ],
@@ -34,7 +35,8 @@ module.exports = function (api) {
       ], [
         '@babel/plugin-proposal-decorators',
         {
-          'legacy': true
+          'legacy': true,
+          // 'decoratorsBeforeExport': true
         }
       ], [
         '@babel/plugin-proposal-class-properties',
