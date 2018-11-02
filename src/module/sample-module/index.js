@@ -2,8 +2,8 @@ import storeModule from './vuex'
 import routes from './route'
 
 export default {
-  install (Vue, {store, router}) {
+  install (Vue, { store, router }) {
     router.addRoutes(routes)
-    store.registerModule('system', storeModule)
+    store.registerModule('sample', storeModule)
   }
 }

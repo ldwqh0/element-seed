@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex, { Store } from 'vuex'
+
 Vue.use(Vuex) // use必须在创建store实例之前调用
 
 export default new Store({
@@ -15,7 +16,7 @@ export default new Store({
     menus: []
   },
   mutations: {
-    updateTitle (state, {title}) {
+    updateTitle (state, { title }) {
       if (title) {
         state.title = title
       }
@@ -23,7 +24,7 @@ export default new Store({
     switchTheme (state, theme) {
       state.theme = theme
     },
-    updateUser (state, {user}) {
+    updateUser (state, { user }) {
       state.user = user
     },
     addError (state, payload) {
@@ -47,9 +48,10 @@ export default new Store({
     }
   },
   actions: {
-    loadMenu ({commit}) {
-      Vue.http.get('/menus').then(({data}) => {
+    loadMenu ({ commit }) {
+      return Vue.http.get('/menus').then(({ data }) => {
         commit('updateMenu', data)
+        return data
       })
     }
   }
