@@ -17,7 +17,6 @@
     }
   })
   export default class App extends Vue {
-    name = 'App'
     @State('theme')
     theme
 
@@ -29,11 +28,6 @@
 
     created () {
       this.loadMenu()
-      this.$http.get('/table1').then(rsp => {
-        console.log(rsp)
-        let a = { name: '' }
-        console.log(a)
-      })
     }
 
     mounted () {

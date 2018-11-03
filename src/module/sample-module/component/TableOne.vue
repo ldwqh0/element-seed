@@ -32,7 +32,7 @@
     action1
 
     created () {
-      console.log('get data from namespaced module', name)
+      console.log('get data from namespaced module', this.name)
       this.action1().then(data => {
         console.log('get data from namespaced action', data)
       })
