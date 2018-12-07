@@ -21,7 +21,7 @@ Vue.config.productionTip = false
 Vue.use(ElementUi)
 Vue.use(VueRouter)
 Vue.use(AjaxPlugin, httpInstance)
-Vue.use(SampleModule, {store, router})
+Vue.use(SampleModule, { store, router })
 
 console.log('Created By ldwqh0@outlook.com')
 

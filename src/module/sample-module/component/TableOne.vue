@@ -4,8 +4,8 @@
                      prop="name"/>
     <el-table-column label="地址"
                      prop="address"/>
-    <el-table-column label="日期"
-                     prop="date"/>
+    <ele-datatables label="日期"
+                    prop="date"/>
   </ele-datatables>
 </template>
 

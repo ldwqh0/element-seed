@@ -1,7 +1,9 @@
 <template>
   <el-submenu v-if="item.submenus && item.submenus.length>0"
               :index="item.id+''">
-    <template slot="title"> {{ item.title }}</template>
+    <template slot="title">
+      {{ item.title }}
+    </template>
     <menu-item v-for="(submenu,index) in item.submenus"
                :item="submenu"
                :key="index"/>
@@ -9,7 +11,9 @@
   <el-menu-item v-else
                 :route="item.href"
                 :index="item.id+''">
-    <template slot="title">{{ item.title }}</template>
+    <template slot="title">
+      {{ item.title }}
+    </template>
   </el-menu-item>
 </template>
 
