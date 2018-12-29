@@ -19,6 +19,7 @@ const createLintingRule = () => ({
 })
 
 module.exports = {
+  entry: ['@babel/polyfill', './src'],
   resolve: {
     extensions: ['.ts', '.js', '.vue', '.json'],
     alias: {
@@ -43,7 +44,13 @@ module.exports = {
       }, {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: file => /node_modules/.test(file) && !/\.vue\.js/.test(file) && !/element-ui(\\|\/)(src|packages)/.test(file)
+        exclude: file =>
+          // 不编译node_modules中的文件
+          /node_modules/.test(file)
+          // 一律要编译vue文件
+          && !/\.vue\.js/.test(file)
+          // element中的文件也要编译，貌似element中的文件编译不完全
+          && !/element-ui(\\|\/)(src|packages)/.test(file)
       }, {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
