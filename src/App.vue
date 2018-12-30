@@ -14,8 +14,8 @@
   @Component({
     components: {
       // 注册两个主题组件
-      leftThemeTemplate: () => import('./components/theme/left-main'),
-      topThemeTemplate: () => import('./components/theme/top-main')
+      leftThemeTemplate: () => import('./components/theme/left-main/Index'),
+      topThemeTemplate: () => import('./components/theme/top-main/Index')
     }
   })
   export default class App extends Vue {
