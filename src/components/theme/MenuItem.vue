@@ -21,7 +21,6 @@
   import Vue from 'vue'
   import { Component, Prop } from 'vue-property-decorator'
 
-  // TODO 测试增加TODO标记
   @Component({
     name: 'menu-item'
   })
