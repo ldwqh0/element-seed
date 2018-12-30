@@ -21,6 +21,16 @@ module.exports = merge(baseWebpackConfig, {
     minimize: true,
     runtimeChunk: true,
     splitChunks: { // 模块分割的选项，
+      cacheGroups: {
+        // 此处的配置将所有的样式文件合并为一个文件
+        styles: {
+          name: 'styles',
+          test: /\.(scss|vue|css|less)$/,
+          chunks: 'all',
+          enforce: true,
+          minChunks: 1
+        }
+      },
       chunks: 'all',
       // minSize: 30000, //默认只有当模块大小大于30Kb的时候才会启用模块分割，可以通过指定一个极小值强制对所有模块进行分割
     },
@@ -62,9 +72,7 @@ module.exports = merge(baseWebpackConfig, {
       'CONTEXT_PATH': JSON.stringify(config.build.assetsPublicPath)
     }),
     new MiniCssExtractPlugin({
-      path: utils.assetsPath('css'),
-      filename: '[name].css?_=[chunkhash]',
-      chunkFilename: utils.assetsPath('css/[id].css?_=[chunkhash]')
+      filename: utils.assetsPath('css/[name].css?_=[chunkhash]'),
     }),
     new webpack.NoEmitOnErrorsPlugin()
   ]

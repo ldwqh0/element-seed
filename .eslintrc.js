@@ -3,7 +3,10 @@
 module.exports = {
   root: true,
   parserOptions: {
-    ecmaVersion: 9,
+    ecmaFeatures: {
+      legacyDecorators: true
+    },
+    ecmaVersion: 2017,
     parser: 'babel-eslint'
   },
   env: {
@@ -36,7 +39,24 @@ module.exports = {
         'allowFirstLine': true
       }
     }],
-    'vue/script-indent': ['error', 2, {'baseIndent': 1}],
+    'vue/singleline-html-element-content-newline': 'off',
+    // 是否在html标记中添加空格
+    'vue/html-closing-bracket-spacing': ['error', {
+      'startTag': 'never',
+      'endTag': 'never',
+      'selfClosingTag': 'never'
+    }],
+    'vue/html-closing-bracket-newline': ['error', {
+      'singleline': 'never',
+      'multiline': 'never'
+    }],
+    // 使用kebab-case模式的组件规则
+    'vue/component-name-in-template-casing': ['error', 'kebab-case', {
+      'ignores': []
+    }],
+    'template-curly-spacing': 'off', // 在模板字符串里面里面的变量${ var }的形式，前后是否留空格
+    'object-curly-spacing': 'off', // 包裹对象的大括号前后是否留空格
+    'vue/script-indent': ['error', 2, { 'baseIndent': 1 }],
     'indent': 'off'
   }
 }

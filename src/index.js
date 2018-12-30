@@ -1,5 +1,5 @@
 // 引入填充库,解决IE不能显示的问题
-import 'babel-polyfill'
+import '@babel/polyfill'
 /* (runtime-only or standalone) has been set in webpack.base.conf with an alias.
  * 引入vue,在webpack.base.conf中通过别名设置使用standalone版本或者runtime-only版本
  * 详细信息请参考 https://vuejs.org/v2/guide/installation.html#Runtime-Compiler-vs-Runtime-only
@@ -21,7 +21,7 @@ Vue.config.productionTip = false
 Vue.use(ElementUi)
 Vue.use(VueRouter)
 Vue.use(AjaxPlugin, httpInstance)
-Vue.use(SampleModule, {store, router})
+Vue.use(SampleModule, { store, router })
 
 console.log('Created By ldwqh0@outlook.com')
 
@@ -33,7 +33,5 @@ console.log('Created By ldwqh0@outlook.com')
 new Vue({
   router,
   store,
-  render (createElement) {
-    return createElement(App)
-  }
+  render: h => h(App)
 }).$mount('#app')

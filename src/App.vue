@@ -1,7 +1,9 @@
 <template>
   <left-theme-template v-if="theme==='left'"/>
   <top-theme-template v-else-if="theme==='top'"/>
-  <div v-else>你没有选择任何主题</div>
+  <div v-else>
+    你没有选择任何主题
+  </div>
 </template>
 
 <script>
@@ -17,7 +19,6 @@
     }
   })
   export default class App extends Vue {
-    name = 'App'
     @State('theme')
     theme
 
@@ -29,9 +30,6 @@
 
     created () {
       this.loadMenu()
-      this.$http.get('/table1').then(rsp => {
-        console.log(rsp)
-      })
     }
 
     mounted () {

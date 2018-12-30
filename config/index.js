@@ -6,7 +6,7 @@ const path = require('path')
 
 module.exports = {
   dev: {
-    mode: "development",
+    mode: 'development',
     // Paths
     assetsSubDirectory: 'static', // 静态资源的路径
     assetsPublicPath: '/element-seed/', // 项目发布路径
@@ -42,7 +42,7 @@ module.exports = {
   },
 
   build: {
-    mode: "production",
+    mode: 'production',
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
 
