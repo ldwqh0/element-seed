@@ -20,6 +20,7 @@ module.exports = merge(baseWebpackConfig, {
   optimization: {
     minimize: true,
     runtimeChunk: true,
+    noEmitOnErrors: true,
     splitChunks: { // 模块分割的选项，
       cacheGroups: {
         // 此处的配置将所有的样式文件合并为一个文件
@@ -44,7 +45,7 @@ module.exports = merge(baseWebpackConfig, {
         }
       }),
       new OptimizeCSSAssetsPlugin({
-        // 采用了文件名后接查询参数的方式解决缓存问题，再打包的时候，css压缩找不到正确的文件名了，需要重新配置规则
+        // 采用了文件名后接查询参数的方式解决缓存问题，在打包的时候，css压缩找不到正确的文件名了，需要重新配置规则
         assetNameRegExp: /\.css\?_=[a-z0-9]*$/g
       })
     ]
@@ -73,7 +74,6 @@ module.exports = merge(baseWebpackConfig, {
     }),
     new MiniCssExtractPlugin({
       filename: utils.assetsPath('css/[name].css?_=[chunkhash]'),
-    }),
-    new webpack.NoEmitOnErrorsPlugin()
+    })
   ]
 })
