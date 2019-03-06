@@ -14,8 +14,8 @@ module.exports = merge(baseWebpackConfig, {
   output: {
     path: config.build.assetsRoot,//输出文件夹
     publicPath: config.build.assetsPublicPath,// 发布路径,可以是/ 或者是http://yourdomain/的形式
-    filename: utils.assetsPath('js/[name].js?_=[chunkhash]'),//输出文件命名规则，使用查询参数解决缓存问题
-    chunkFilename: utils.assetsPath('js/[id].js?_=[chunkhash]')
+    filename: utils.assetsPath('js/[name].[chunkhash].js'),//输出文件命名规则，使用查询参数解决缓存问题
+    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   optimization: {
     minimize: true,
@@ -38,7 +38,7 @@ module.exports = merge(baseWebpackConfig, {
     minimizer: [
       // 对js文件进行压缩,在output之中设置了filename和chunkFilename之后，webpack4的默认压缩就无效了
       new UglifyJsPlugin({
-        test: /\.js($|\?)/i,
+        test: /\.js$/,
         uglifyOptions: {
           sourceMap: config.build.productionSourceMap,
           mangle: true // 启用代码混淆
@@ -46,7 +46,7 @@ module.exports = merge(baseWebpackConfig, {
       }),
       new OptimizeCSSAssetsPlugin({
         // 采用了文件名后接查询参数的方式解决缓存问题，在打包的时候，css压缩找不到正确的文件名了，需要重新配置规则
-        assetNameRegExp: /\.css\?_=[a-z0-9]*$/g
+        assetNameRegExp: /\.css$/
       })
     ]
   },
@@ -73,7 +73,7 @@ module.exports = merge(baseWebpackConfig, {
       'CONTEXT_PATH': JSON.stringify(config.build.assetsPublicPath)
     }),
     new MiniCssExtractPlugin({
-      filename: utils.assetsPath('css/[name].css?_=[chunkhash]'),
+      filename: utils.assetsPath('css/[name].[chunkhash].css'),
     })
   ]
 })
