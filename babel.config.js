@@ -13,7 +13,7 @@ module.exports = function (api) {
               'not ie <= 8'
             ]
           },
-          'useBuiltIns': 'entry'
+          'useBuiltIns': false
         }
       ]
     ],

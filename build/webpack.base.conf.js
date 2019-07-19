@@ -19,7 +19,7 @@ const createLintingRule = () => ({
 })
 
 module.exports = {
-  entry: ['core-js/stable', './src'],
+  entry: ['core-js/stable', 'regenerator-runtime/runtime', './src'],
   resolve: {
     extensions: ['.ts', '.js', '.vue', '.json'],
     alias: {
