@@ -19,7 +19,7 @@ const createLintingRule = () => ({
 })
 
 module.exports = {
-  entry: ['@babel/polyfill', './src'],
+  entry: ['core-js/stable', './src'],
   resolve: {
     extensions: ['.ts', '.js', '.vue', '.json'],
     alias: {
