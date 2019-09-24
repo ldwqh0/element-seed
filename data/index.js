@@ -13,8 +13,8 @@ function getQuery (url) {
   }
 }
 
-Mock.mock(/^\/table1/, ({url, type, body}) => {
-  let {draw} = getQuery(url)
+Mock.mock(/^\/table1/, ({ url, type, body }) => {
+  let { draw } = getQuery(url)
   let result = table
   if (draw !== undefined) {
     result.draw = draw
@@ -22,6 +22,5 @@ Mock.mock(/^\/table1/, ({url, type, body}) => {
   return result
 })
 Mock.mock('/menus', options => {
-  console.log(options)
   return menus
 })
