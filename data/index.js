@@ -5,7 +5,7 @@ import table from './table'
 import qs from 'qs'
 
 function getQuery (url) {
-  let s = url.split('?')
+  const s = url.split('?')
   if (s.length > 1) {
     return qs.parse(s[1])
   } else {
@@ -14,8 +14,8 @@ function getQuery (url) {
 }
 
 Mock.mock(/^\/table1/, ({ url, type, body }) => {
-  let { draw } = getQuery(url)
-  let result = table
+  const { draw } = getQuery(url)
+  const result = table
   if (draw !== undefined) {
     result.draw = draw
   }

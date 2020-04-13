@@ -3,20 +3,18 @@
     <el-header>
       <el-row>
         <el-col :span="12">
-          <h2> xz element-seed template</h2>
+          <h2>xz element-seed template</h2>
         </el-col>
       </el-row>
     </el-header>
     <el-container>
       <el-aside style="width: 200px;">
         <el-menu router>
-          <menu-item v-for="(menu,index) in menus"
-                     :key="index"
-                     :item="menu"/>
+          <menu-item v-for="(menu,index) in menus" :key="index" :item="menu" />
         </el-menu>
       </el-aside>
       <el-main>
-        <router-view/>
+        <router-view />
       </el-main>
     </el-container>
   </el-container>
@@ -43,10 +41,11 @@
 </script>
 
 <style scoped>
-
 </style>
 <style lang="less">
-  html, body, #app {
+  html,
+  body,
+  #app {
     height: 100%;
   }
 

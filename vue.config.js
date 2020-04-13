@@ -1,15 +1,21 @@
-const webpack = require('webpack')
+const webpackProdConf = require('./config/webpack.prod.conf')
+const webpackDevConf = require('./config/webpack.dev.conf')
+// 如果使用测试环境，使用下面的代理配置
+const proxy = require('./config/proxy_dev')
+// 如果使用本机测试环境，使用下面的代理配置
+// const proxy = require('./config/proxy_localhost')
 
-module.exports = {
+const config = {
+  assetsDir: process.env.ASSETS_DIR,
   publicPath: process.env.CONTEXT_PATH,
-  assetsDir: 'static',
-  configureWebpack: {
-    entry: ['core-js/stable', 'regenerator-runtime/runtime', './src'],
-    plugins: [
-      new webpack.DefinePlugin({
-        // 定义一个全局的上下文变量，目的是为了发布时能够通过目录区分不同的项目，而不用单独占用一个端口
-        'CONTEXT_PATH': JSON.stringify(process.env.CONTEXT_PATH)
-      })
-    ]
+  devServer: {
+    port: 80,
+    proxy
   }
 }
+if (process.env.BABEL_ENV === 'production') {
+  config.configureWebpack = webpackProdConf
+} else {
+  config.configureWebpack = webpackDevConf
+}
+module.exports = config

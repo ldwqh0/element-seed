@@ -1,11 +1,8 @@
 <template>
   <ele-datatables :ajax="ajax">
-    <el-table-column label="姓名"
-                     prop="name"/>
-    <el-table-column label="地址"
-                     prop="address"/>
-    <ele-datatables label="日期"
-                    prop="date"/>
+    <el-table-column label="姓名" prop="name" />
+    <el-table-column label="地址" prop="address" />
+    <ele-datatables label="日期" prop="date" />
   </ele-datatables>
 </template>
 
@@ -32,6 +29,8 @@
     action1
 
     created () {
+      console.log(process.env)
+      debugger
       console.log('get data from namespaced module', this.name)
       this.action1().then(data => {
         console.log('get data from namespaced action', data)
@@ -41,5 +40,4 @@
 </script>
 
 <style scoped>
-
 </style>

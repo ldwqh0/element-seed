@@ -1,6 +1,6 @@
 <template>
-  <left-theme-template v-if="theme==='left'"/>
-  <top-theme-template v-else-if="theme==='top'"/>
+  <left-theme-template v-if="theme==='left'" />
+  <top-theme-template v-else-if="theme==='top'" />
   <div v-else>你没有选择任何主题</div>
 </template>
 
@@ -36,5 +36,5 @@
   }
 </script>
 <style lang="less">
-  @import './style/themes/default.less';
+  @import "./style/themes/default.less";
 </style>

@@ -4,7 +4,7 @@
       <el-option v-for="(item,index) in options"
                  :label="item.label"
                  :value="item.value"
-                 :key="index"/>
+                 :key="index" />
     </el-select>
   </el-form>
 </template>
