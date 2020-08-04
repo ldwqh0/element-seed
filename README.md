@@ -1,4 +1,6 @@
 # element-seed
+## 升级日志
+2.1.0 升级到babel-eslint
 
 ## Project setup
 ```

@@ -7,7 +7,7 @@
 <script>
   import Vue from 'vue'
   import { Component } from 'vue-property-decorator'
-  import { Mutation, State, Action } from 'vuex-class'
+  import { Action, Mutation, State } from 'vuex-class'
 
   @Component({
     components: {
