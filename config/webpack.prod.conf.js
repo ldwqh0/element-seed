@@ -11,8 +11,6 @@ module.exports = {
         // 此处将所有的样式文件合并打包输出
         styles: {
           name: 'styles',
-          // TODO 一个bug???
-          // test: /\.(scss|vue|css|less)$/,
           test: m => m.constructor.name === 'CssModule',
           chunks: 'all',
           enforce: true,

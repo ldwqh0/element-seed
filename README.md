@@ -1,4 +1,4 @@
-# seed
+# element-seed
 
 ## Project setup
 ```
