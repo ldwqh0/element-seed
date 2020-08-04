@@ -16,7 +16,6 @@ import { AjaxPlugin } from './plugins'
 import '../data'
 
 import { SampleModule } from './module'
-import './c'
 
 Vue.config.productionTip = false
 Vue.use(ElementUi)
