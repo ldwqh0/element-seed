@@ -27,7 +27,7 @@
   export default class TableTwo extends Vue {
     get tableData3 () {
       const a = []
-      for (let i = 0; i < 1000; i++) {
+      for (let i = 0; i < 100; i++) {
         a.push({
           date: '2016-05-03',
           name: '王小虎',
