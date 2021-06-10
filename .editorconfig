@@ -1,0 +1,19 @@
+[*]
+indent_style = space
+
+[*.xml]
+indent_size = 2
+
+[{*.js, *.ts, *.vue}]
+indent_size = 2
+
+[*.java]
+indent_size = 4
+
+[*.scala]
+indent_size = 2
+
+[{*.yaml, *.yml}]
+indent_size = 2
+ij_yaml_keep_indents_on_empty_lines = false
+ij_yaml_keep_line_breaks = true
