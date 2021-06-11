@@ -2,10 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import ElementUi from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import store from './vuex'
-import { router } from './config'
+import { router, store } from './config'
 // 载入模拟数据，在对接后端服务器接口时，取消掉
-import SampleModule from './module/sample-module'
+import SampleModule from './modules/sample-module'
 
 Vue.config.productionTip = false
 Vue.use(ElementUi)

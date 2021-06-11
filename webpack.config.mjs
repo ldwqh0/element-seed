@@ -1,4 +1,4 @@
-import path from 'path'
+import { dirname, resolve } from 'path'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import VueLoaderPlugin from 'vue-loader/lib/plugin.js'
@@ -9,8 +9,8 @@ import { merge } from 'webpack-merge'
 import dev from './config/webpack.config.dev.mjs'
 import prod from './config/webpack.config.prod.mjs'
 import env from './config/env.mjs'
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
+// 当使用es modules时, 没有__dirname变量，需要使用工具计算该值
+const __dirname = dirname(fileURLToPath(import.meta.url))
 export default function (envParams, { mode = 'production' }) {
   const envToUse = Object.assign({
     CONTEXT_PATH: '/',
@@ -19,7 +19,7 @@ export default function (envParams, { mode = 'production' }) {
 
   const basic = {
     entry: {
-      main: ['core-js/stable', path.resolve(__dirname, envToUse.entry)]
+      main: ['core-js/stable', resolve(__dirname, envToUse.entry)]
     },
     mode,
     module: {
@@ -51,12 +51,12 @@ export default function (envParams, { mode = 'production' }) {
     resolve: {
       extensions: ['.js', '.ts', '.vue', '.json', '.d.ts'],
       alias: {
-        '@': path.resolve(__dirname, 'src')
+        '@': resolve(__dirname, 'src')
       }
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, 'public', 'index.html')
+        template: resolve(__dirname, 'public', 'index.html')
       }),
       new VueLoaderPlugin(),
       new ESLintWebpackPlugin({
@@ -64,8 +64,8 @@ export default function (envParams, { mode = 'production' }) {
       }),
       new CopyWebpackPlugin({
         patterns: [{
-          from: path.resolve(__dirname, 'public', 'static'),
-          to: path.resolve(__dirname, 'dist', 'static')
+          from: resolve(__dirname, 'public', 'static'),
+          to: resolve(__dirname, 'dist', 'static')
         }]
       }),
       new webpack.DefinePlugin({
@@ -86,4 +86,3 @@ export default function (envParams, { mode = 'production' }) {
     return merge(basic, prod(envToUse, { mode }))
   }
 }
-// export default a

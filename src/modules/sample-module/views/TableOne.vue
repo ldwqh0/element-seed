@@ -1,14 +1,16 @@
 <template>
-  <ele-datatables :ajax="ajax">
-    <el-table-column label="姓名" prop="name" />
-    <el-table-column label="地址" prop="address" />
-    <ele-datatables label="日期" prop="date" />
-  </ele-datatables>
+  <div>
+    <ele-datatables :ajax="ajax">
+      <el-table-column label="姓名" prop="name" />
+      <el-table-column label="地址" prop="address" />
+      <ele-datatables label="日期" prop="date" />
+    </ele-datatables>
+  </div>
 </template>
 
-<script>
+<script lang="ts">
   import { Component, Vue } from 'vue-property-decorator'
-  import EleDatatables from 'element-datatables'
+  import { EleDataTables as EleDatatables } from 'element-datatables'
   import { namespace } from 'vuex-class'
 
   const SampleModule = namespace('sample')// 这里的名称要和某块中注册的名称一致
@@ -22,14 +24,12 @@
     ajax = '/table1'
 
     @SampleModule.State('name')
-    name
+    name!: string
 
     @SampleModule.Action('action1')
-    action1
+    action1!: () => string
 
-    created () {
-      console.log(process.env)
-      debugger
+    created (): void {
       console.log('get data from namespaced module', this.name)
       this.action1().then(data => {
         console.log('get data from namespaced action', data)

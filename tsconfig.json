@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES5",
     "module": "ESNext",
-    // 如果项目中有js文件，需要开启此项
+    // TODO 如果项目中有js文件，需要开启此项
     "allowJs": true,
     "strict": true,
     "resolveJsonModule": false,

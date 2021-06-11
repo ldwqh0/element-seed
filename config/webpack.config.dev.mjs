@@ -29,7 +29,6 @@ export default function (envParams, { mode = 'production' } = {}) {
       inline: false,
       // 将这个改到一个不存在的地方，才能触发后台校验
       index: 'index.html',
-      host: '0.0.0.0',
       port: 80,
       proxy: proxy(envParams),
       historyApiFallback: {
