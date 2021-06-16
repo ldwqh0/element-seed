@@ -4,6 +4,8 @@
            :rules="rules"
            label-width="100px"
            class="demo-ruleForm">
+    <in-component :value="result" />
+
     <el-form-item label="活动名称" prop="name">
       <el-input v-model="ruleForm.name" />
     </el-form-item>
@@ -58,14 +60,25 @@
     </el-form-item>
   </el-form>
 </template>
-<script>
+<script lang="ts">
   import Vue from 'vue'
   import { Component } from 'vue-property-decorator'
 
   import http from '@/http'
+  import InComponent from './InComponent.vue'
 
-  @Component
+  // 使用Component 将一个类声明为组件
+
+  @Component({
+    // 用到的局部components,等同于vue的components属性，格式也表示一致
+    components: {
+      // 这个写法等同于 InComponent:InComponent,
+      InComponent
+      // 如果要给组件改名，可以使用 Rename:InComponent的方式，修改组件在当前页面中的命名
+    }
+  })
   export default class FormSample extends Vue {
+    // ES6中的属性，等同于vue的data中的某个值，有多个属性，直接在下面写就行了
     ruleForm = {
       name: '',
       region: '',
@@ -77,6 +90,9 @@
       desc: ''
     }
 
+    // 继续写的属性
+    title = ''
+    // 表单验证的属性
     rules = {
       name: [
         { required: true, message: '请输入活动名称', trigger: 'blur' },
@@ -102,17 +118,32 @@
       ]
     }
 
-    submitForm (formName) {
-      this.$refs[formName].validate()
+    // ES6中的类的属性，参考 https://es6.ruanyifeng.com/#docs/class
+    // 在vue中当做data使用
+    // 在es6中，如果某个属性只有get而没有set，代表它是一个只读属性
+    // 在class 组件中，只读属性等价于 computed
+    get result (): string {
+      return this.ruleForm.name + new Date()
+    }
+
+    // 生命周期
+    created (): void {
+      console.log('这个是created声明周期,声明周期直接使用生命周期的名称，写到类体里面就行了')
+    }
+
+    // methods 定义,Es6中的类方法，等同于vue中的methods
+    // 这个是typescript的类声明写法，不用ts的话忽略掉类型声明，返回值声明和类型强转即可
+    submitForm (formName: string/* 参数类型声明 */): void/* 函数返回值声明 */ {
+      (this.$refs[formName] as any/* 类型转 */).validate()
         .then(() => http.post('/a/b', this.ruleForm))
         .then(() => alert('submit!'))
-        .catch(e => {
+        .catch((e: any) => {
           alert(`提交错误${e}`)
         })
     }
 
-    resetForm (formName) {
-      this.$refs[formName].resetFields()
+    resetForm (formName: string): void {
+      (this.$refs[formName] as any).resetFields()
     }
   }
 </script>

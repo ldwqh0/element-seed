@@ -3,8 +3,8 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "serve": "webpack serve --hot --mode=development --env CONTEXT_PATH=/admin/",
-    "build": "webpack --mode=production --env CONTEXT_PATH=/admin/",
+    "serve": "webpack serve --hot --mode=development",
+    "build": "webpack",
     "reinstall": "npm i --registry=http://registry.npm.taobao.org/",
     "lint": "eslint --ext .js,.vue,.ts src/",
     "fix": "eslint --fix --ext .js,.vue,.ts src/"
