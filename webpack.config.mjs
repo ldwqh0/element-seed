@@ -1,5 +1,4 @@
 import { dirname, resolve } from 'path'
-import CopyWebpackPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import VueLoaderPlugin from 'vue-loader/lib/plugin.js'
 import ESLintWebpackPlugin from 'eslint-webpack-plugin'
@@ -62,12 +61,7 @@ export default function (envParams, { mode = 'production' }) {
       new ESLintWebpackPlugin({
         extensions: ['ts', 'js', 'vue'],
       }),
-      new CopyWebpackPlugin({
-        patterns: [{
-          from: resolve(__dirname, 'public', 'static'),
-          to: resolve(__dirname, 'dist', 'static')
-        }]
-      }),
+
       new webpack.DefinePlugin({
         // 将配置对象env抽象为全局对象
         env: Object.entries(envToUse).reduce((acc, [key, value]) => ({

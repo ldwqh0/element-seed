@@ -1,9 +1,10 @@
-import path from 'path'
+import path, { resolve } from 'path'
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import CompressionPlugin from 'compression-webpack-plugin'
 import { CleanWebpackPlugin } from 'clean-webpack-plugin'
 import { fileURLToPath } from 'url'
+import CopyWebpackPlugin from 'copy-webpack-plugin'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -40,6 +41,12 @@ export default function (envParams, { mode = 'production' }) {
       minimizer: ['...', new CssMinimizerPlugin()],
     },
     plugins: [
+      new CopyWebpackPlugin({
+        patterns: [{
+          from: resolve(__dirname, '../', 'public', 'static'),
+          to: resolve(__dirname, '../', 'dist', 'static')
+        }]
+      }),
       new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({
         filename: 'static/styles/[id].[contenthash:7].css'
