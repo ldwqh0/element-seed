@@ -19,13 +19,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
   import Vue from 'vue'
   import { Component } from 'vue-property-decorator'
 
   @Component
   export default class TableTwo extends Vue {
-    get tableData3 () {
+    get tableData3 (): any[] {
       const a = []
       for (let i = 0; i < 100; i++) {
         a.push({
@@ -39,17 +39,17 @@
 
     multipleSelection = []
 
-    toggleSelection (rows) {
+    toggleSelection (rows: any): void {
       if (rows) {
-        rows.forEach(row => {
-          this.$refs.multipleTable.toggleRowSelection(row)
+        rows.forEach((row: any) => {
+          (this.$refs.multipleTable as any).toggleRowSelection(row)
         })
       } else {
-        this.$refs.multipleTable.clearSelection()
+        (this.$refs.multipleTable as any).clearSelection()
       }
     }
 
-    handleSelectionChange (val) {
+    handleSelectionChange (val: any): void {
       this.multipleSelection = val
     }
   }

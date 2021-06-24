@@ -1,3 +1,5 @@
+import { Module } from 'vuex'
+
 export default {
   namespaced: true,
   state: {
@@ -8,4 +10,4 @@ export default {
       return 'good'
     }
   }
-}
+} as Module<unknown, unknown>

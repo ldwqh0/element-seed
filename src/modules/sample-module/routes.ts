@@ -1,3 +1,5 @@
+import { RouteConfig } from 'vue-router'
+
 export default [{
   path: '/',
   redirect: {
@@ -19,4 +21,4 @@ export default [{
     path: 'list2',
     component: () => import('./views/TableTwo.vue')
   }]
-}]
+}] as RouteConfig[]
