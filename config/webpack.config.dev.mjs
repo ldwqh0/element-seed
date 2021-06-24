@@ -30,9 +30,6 @@ export default function (envParams, { mode = 'development' } = {}) {
         errors: true
       },
       inline: true,
-      // 将这个改到一个不存在的地方，才能触发后台校验
-      index: 'index.html',
-      port: 80,
       proxy: proxy(envParams),
       historyApiFallback: {
         rewrites: [{
