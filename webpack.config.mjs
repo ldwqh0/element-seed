@@ -1,6 +1,6 @@
 import { dirname, resolve } from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import VueLoaderPlugin from 'vue-loader/lib/plugin.js'
+import { VueLoaderPlugin } from 'vue-loader'
 import ESLintWebpackPlugin from 'eslint-webpack-plugin'
 import { fileURLToPath } from 'url'
 import webpack from 'webpack'
