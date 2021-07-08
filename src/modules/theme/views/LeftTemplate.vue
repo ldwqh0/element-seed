@@ -1,6 +1,6 @@
 <template>
   <el-container style="height: 100%;">
-    <el-header />
+    <el-header>一个测试版本的左右布局</el-header>
     <el-container>
       <el-aside>
         <el-menu router>
@@ -22,11 +22,9 @@
 </template>
 
 <script>
-  import { Component, Vue } from 'vue-property-decorator'
+  import { defineComponent } from 'vue'
 
-  @Component
-  export default class LeftTemplate extends Vue {
-  }
+  export default defineComponent({})
 </script>
 
 <style scoped>

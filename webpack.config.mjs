@@ -1,7 +1,6 @@
 import { dirname, resolve } from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { VueLoaderPlugin } from 'vue-loader'
-import ESLintWebpackPlugin from 'eslint-webpack-plugin'
 import { fileURLToPath } from 'url'
 import webpack from 'webpack'
 import { merge } from 'webpack-merge'
@@ -50,6 +49,7 @@ export default function (envParams, { mode = 'production' }) {
     resolve: {
       extensions: ['.js', '.ts', '.vue', '.json', '.d.ts'],
       alias: {
+        'vue': 'vue/dist/vue.esm-bundler.js',
         '@': resolve(__dirname, 'src')
       }
     },
@@ -58,10 +58,9 @@ export default function (envParams, { mode = 'production' }) {
         template: resolve(__dirname, 'public', 'index.html')
       }),
       new VueLoaderPlugin(),
-      new ESLintWebpackPlugin({
-        extensions: ['ts', 'js', 'vue'],
-      }),
-
+      // new ESLintWebpackPlugin({
+      //   extensions: ['ts', 'js', 'vue'],
+      // }),
       new webpack.DefinePlugin({
         // 将配置对象env抽象为全局对象
         env: Object.entries(envToUse).reduce((acc, [key, value]) => ({
@@ -74,6 +73,7 @@ export default function (envParams, { mode = 'production' }) {
       publicPath: envToUse.CONTEXT_PATH,
     }
   }
+  debugger
   if (mode === 'development') {
     return merge(basic, dev(envToUse, { mode }))
   } else {

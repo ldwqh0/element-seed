@@ -1,4 +1,4 @@
-import { RouteConfig } from 'vue-router'
+import { RouteRecordRaw } from 'vue-router'
 
 export default [{
   path: '/',
@@ -12,13 +12,5 @@ export default [{
     name: 'form',
     path: 'form',
     component: () => import('./views/FormSample.vue')
-  }, {
-    name: 'list',
-    path: 'list',
-    component: () => import('./views/TableOne.vue')
-  }, {
-    name: 'list2',
-    path: 'list2',
-    component: () => import('./views/TableTwo.vue')
   }]
-}] as RouteConfig[]
+}] as RouteRecordRaw[]
