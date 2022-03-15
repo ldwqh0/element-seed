@@ -5,7 +5,7 @@
     // TODO 如果项目中有js文件，需要开启此项
     "allowJs": true,
     "strict": true,
-    "resolveJsonModule": false,
+    "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",

@@ -1,82 +1,81 @@
 import { dirname, resolve } from 'path'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import { VueLoaderPlugin } from 'vue-loader'
 import { fileURLToPath } from 'url'
-import webpack from 'webpack'
-import { merge } from 'webpack-merge'
-import dev from './config/webpack.config.dev.mjs'
-import prod from './config/webpack.config.prod.mjs'
+import { VueLoaderPlugin } from 'vue-loader'
+import { CleanWebpackPlugin } from 'clean-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import CopyWebpackPlugin from 'copy-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import CompressionPlugin from 'compression-webpack-plugin'
 import env from './config/env.mjs'
-// 当使用es modules时, 没有__dirname变量，需要使用工具计算该值
-const __dirname = dirname(fileURLToPath(import.meta.url))
-export default function (envParams, { mode = 'production' }) {
-  const envToUse = Object.assign({
-    CONTEXT_PATH: '/',
-    entry: 'src'
-  }, env, envParams)
 
-  const basic = {
-    entry: {
-      main: ['core-js/stable', resolve(__dirname, envToUse.entry)]
-    },
-    mode,
-    module: {
-      rules: [{
-        test: /((m?j)|t)s$/,
-        loader: 'ts-loader',
-        exclude: (path) => /(node_modules|bower_components)/.test(path),
-        options: {
-          appendTsSuffixTo: [/\.vue$/],
-          transpileOnly: true
-        }
-      }, {
-        test: /\.vue$/,
-        loader: 'vue-loader'
-      }, {
-        test: /\.(woff|ttf)$/,
-        type: 'asset/resource',
-        generator: {
-          filename: 'static/fonts/[id].[contenthash:7][ext]'
-        }
-      }, {
-        test: /\.(png|jpe?g|gif)$/i,
-        type: 'asset/resource',
-        generator: {
-          filename: 'static/images/[id].[contenthash:7][ext]'
-        }
-      }]
-    },
-    resolve: {
-      extensions: ['.js', '.ts', '.vue', '.json', '.d.ts'],
-      alias: {
-        'vue': 'vue/dist/vue.esm-bundler.js',
-        '@': resolve(__dirname, 'src')
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
+export default {
+  entry: {
+    main: ['core-js/stable', resolve(__dirname, 'src/index.ts')]
+  },
+  module: {
+    rules: [{
+      test: /((m?j)|t)s$/,
+      loader: 'ts-loader',
+      exclude: (path) => /(node_modules|bower_components)/.test(path),
+      options: {
+        appendTsSuffixTo: [/\.vue$/],
+        transpileOnly: true
       }
-    },
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: resolve(__dirname, 'public', 'index.html')
-      }),
-      new VueLoaderPlugin(),
-      // new ESLintWebpackPlugin({
-      //   extensions: ['ts', 'js', 'vue'],
-      // }),
-      new webpack.DefinePlugin({
-        // 将配置对象env抽象为全局对象
-        env: Object.entries(envToUse).reduce((acc, [key, value]) => ({
-          ...acc,
-          [key]: JSON.stringify(value)
-        }), {})
-      })
-    ],
-    output: {
-      publicPath: envToUse.CONTEXT_PATH,
-    }
-  }
-  debugger
-  if (mode === 'development') {
-    return merge(basic, dev(envToUse, { mode }))
-  } else {
-    return merge(basic, prod(envToUse, { mode }))
+    }, {
+      test: /\.css$/,
+      use: [
+        MiniCssExtractPlugin.loader,
+        'css-loader'
+      ]
+    }, {
+      test: /\.less$/,
+      use: [
+        MiniCssExtractPlugin.loader,
+        'css-loader',
+        'less-loader'
+      ]
+    }, {
+      test: /\.vue$/,
+      loader: 'vue-loader'
+    }, {
+      test: /\.(png|svg|jpe?g|gif)$/i,
+      type: 'asset/resource',
+      generator: {
+        filename: 'static/images/[id].[contenthash:7][ext]'
+      }
+    }]
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: '四川乐融集团订货平台',
+      // template: resolve(__dirname, 'index.html'),
+      meta: {
+        'version': `${new Date().getTime()}`,
+        'renderer': 'webkit',
+        'viewport': 'width=device-width,initial-scale=1.0'
+      }
+    }),
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'static/styles/[id].[contenthash:7].css'
+    }),
+    new CopyWebpackPlugin({
+      patterns: [{
+        from: resolve(__dirname, 'public'),
+        to: resolve(__dirname, 'dist')
+      }]
+    }),
+    new VueLoaderPlugin(),
+    new CompressionPlugin({
+      test: /\.(js|css|html)$/
+    })
+  ],
+  target: ['web', 'es5'],
+  output: {
+    path: resolve(__dirname, 'dist'),
+    publicPath: env.CONTEXT_PATH,
+    filename: 'static/js/[id].[contenthash:7].js'
   }
 }

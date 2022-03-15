@@ -1,3 +1,3 @@
 export default {
-  CONTEXT_PATH: '/'
+  CONTEXT_PATH: '/vue/'
 }

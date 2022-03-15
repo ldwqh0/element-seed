@@ -1,13 +1,19 @@
 <template>
-  <router-view />
+  <img alt="Vue logo" src="./assets/logo.png"/>
+  <HelloWorld msg="Hello Vue 3 + Vite"/>
 </template>
+<script lang="ts" setup>
+  // This starter template is using Vue 3 <script setup> SFCs
+  // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
+  import HelloWorld from './components/HelloWorld.vue'</script>
 
-<script>
-  // TODO 基于type script的组件，官方ts语言指导写法
-  import { defineComponent } from 'vue'
-
-  export default defineComponent({})
-</script>
-<style lang="less">
-  //@import "./style/themes/default.less";
+<style>
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+  }
 </style>
