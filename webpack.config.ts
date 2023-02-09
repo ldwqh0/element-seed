@@ -1,24 +1,23 @@
-import { dirname, resolve } from 'path'
-import { fileURLToPath } from 'url'
+import { resolve } from 'path'
 import { VueLoaderPlugin } from 'vue-loader'
 import { CleanWebpackPlugin } from 'clean-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import CompressionPlugin from 'compression-webpack-plugin'
-import env from './config/env.mjs'
-
-const __dirname = dirname(fileURLToPath(import.meta.url))
+import env from './config/env'
 
 export default {
+  mode: 'production',
   entry: {
     main: ['core-js/stable', resolve(__dirname, 'src/index.ts')]
   },
+
   module: {
     rules: [{
       test: /((m?j)|t)s$/,
       loader: 'ts-loader',
-      exclude: (path) => /(node_modules|bower_components)/.test(path),
+      exclude: (path: string) => /(node_modules|bower_components)/.test(path),
       options: {
         appendTsSuffixTo: [/\.vue$/],
         transpileOnly: true
@@ -38,7 +37,10 @@ export default {
       ]
     }, {
       test: /\.vue$/,
-      loader: 'vue-loader'
+      loader: 'vue-loader',
+      options: {
+        reactivityTransform: true
+      }
     }, {
       test: /\.(png|svg|jpe?g|gif)$/i,
       type: 'asset/resource',
@@ -49,8 +51,8 @@ export default {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: '四川乐融集团订货平台',
-      // template: resolve(__dirname, 'index.html'),
+      title: env.title,
+      template: resolve(__dirname, 'index.html'),
       meta: {
         'version': `${new Date().getTime()}`,
         'renderer': 'webkit',

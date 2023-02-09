@@ -1,37 +1,41 @@
 {
   "compilerOptions": {
     "target": "ES5",
+    "useDefineForClassFields": true,
     "module": "ESNext",
-    // TODO 如果项目中有js文件，需要开启此项
-    "allowJs": true,
+    "moduleResolution": "Node",
     "strict": true,
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
+    "jsx": "preserve",
     "sourceMap": true,
-    "baseUrl": ".",
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "downlevelIteration": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "skipLibCheck": true,
     "paths": {
       "@/*": [
-        "src/*"
+        "./src/*"
       ]
-    },
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ]
+    } 
   },
   "include": [
     "src/**/*.ts",
+    "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "src/**/*.vue"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
 }

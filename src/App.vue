@@ -1,6 +1,6 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png"/>
-  <HelloWorld msg="Hello Vue 3 + Vite"/>
+  <img alt="Vue logo" src="./assets/logo.png" />
+  <hello-world msg="Hello Vue 3 + Vite" />
 </template>
 <script lang="ts" setup>
   // This starter template is using Vue 3 <script setup> SFCs
