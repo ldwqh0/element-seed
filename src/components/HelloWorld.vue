@@ -1,9 +1,7 @@
-<script setup>
-  import { ref } from 'vue'
-
+<script lang="ts" setup>
   const obj = $ref({ count: 0 })
 
-  const count = ref(0)
+  const count = $ref(0)
 
   setInterval(() => {
     obj.count++
@@ -12,7 +10,6 @@
 </script>
 
 <template>
-
   <p>
     Recommended IDE setup:
     <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>

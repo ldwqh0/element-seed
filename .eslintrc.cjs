@@ -3,7 +3,7 @@ module.exports = {
   env: {
     node: true,
     browser: true,
-    es2021: true
+    es2022: true
   },
   extends: [
     'plugin:vue/vue3-recommended',
@@ -22,12 +22,7 @@ module.exports = {
     sourceType: 'module'
   },
   globals: {
-    env: true,
-    $ref: 'readonly',
-    $computed: 'readonly',
-    $shallowRef: 'readonly',
-    $customRef: 'readonly',
-    $toRef: 'readonly'
+    env: true
   },
   rules: {
     'no-undef': process.env.NODE_ENV === 'production' ? 'warn' : 'off',

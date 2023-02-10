@@ -1,0 +1,5 @@
+[*]
+indent_style = space
+
+[*.{ts, vue, html, js, cjs, mjs, json}]
+indent_size = 2

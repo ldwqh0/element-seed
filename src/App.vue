@@ -1,5 +1,5 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
+  <img alt="Vue logo" src="./assets/logo.png">
   <hello-world msg="Hello Vue 3 + Vite" />
 </template>
 <script lang="ts" setup>
@@ -8,7 +8,7 @@
   import HelloWorld from './components/HelloWorld.vue'
   // do nothing
 </script>
-
+·
 <style scoped lang="less">
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;

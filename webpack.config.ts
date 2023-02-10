@@ -12,7 +12,6 @@ export default {
   entry: {
     main: ['core-js/stable', resolve(__dirname, 'src/index.ts')]
   },
-
   module: {
     rules: [{
       test: /((m?j)|t)s$/,
@@ -54,9 +53,9 @@ export default {
       title: env.title,
       template: resolve(__dirname, 'index.html'),
       meta: {
-        'version': `${new Date().getTime()}`,
-        'renderer': 'webkit',
-        'viewport': 'width=device-width,initial-scale=1.0'
+        version: `${new Date().getTime()}`,
+        renderer: 'webkit',
+        viewport: 'width=device-width,initial-scale=1.0'
       }
     }),
     new CleanWebpackPlugin(),
