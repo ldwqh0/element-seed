@@ -12,6 +12,7 @@
     "vue": "^3.2.47"
   },
   "devDependencies": {
+    "@types/node": "^18.13.0",
     "@typescript-eslint/parser": "^5.51.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/eslint-config-standard": "^8.0.1",
@@ -19,6 +20,7 @@
     "compression-webpack-plugin": "^10.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
+    "eslint": "^8.33.0",
     "eslint-plugin-vue": "^9.9.0",
     "html-webpack-plugin": "^5.5.0",
     "less": "^4.1.2",

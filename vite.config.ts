@@ -8,27 +8,28 @@ import { createHtmlPlugin } from 'vite-plugin-html'
 // https://vitejs.dev/config/
 export default defineConfig({
   base: env.CONTEXT_PATH,
-  plugins: [vue({
-    reactivityTransform: true
-  }),
+  plugins: [
+    vue({
+      reactivityTransform: true
+    }),
     eslintPlugin({
       include: ['src/**/*.js', 'src/**/*.vue', 'src/*.js', 'src/*.vue']
     }),
     createHtmlPlugin({
       entry: '/src/index.ts',
       template: 'index.html',
-      // Data that needs to be injected into the index.html.bak ejs template
+      // Data that needs to be injected into the index.html ejs template
       inject: {
         data: {
           htmlWebpackPlugin: {
             options: {
-              title: env.TITLE
+              title: env.title
             }
           }
         }
       }
-    })],
-
+    })
+  ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src')
